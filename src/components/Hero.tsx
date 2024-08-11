@@ -60,8 +60,7 @@ const Hero = () => {
               src="/images/hero-image.jpg"
               alt="hero-image"
               className="object-cover w-full h-full rounded-full"
-              layout="responsive"
-              width={500}
+               width={500}
               height={500}
             />
             <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black opacity-30 rounded-full"></div>

@@ -6,7 +6,7 @@ import { useProductsQuery } from '@/services/queries/product.query';
 import ProductCardSkeleton from './ProductCardSkeleton';
 
 const PopularProductCards = () => {
-    const { data: products, isLoading } = useProductsQuery({ search: "", category: "" });
+    const { data: products, isLoading } = useProductsQuery();
 
     if (isLoading) {
         return (
