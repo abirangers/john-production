@@ -23,7 +23,7 @@ const CartItem: React.FC<{ product: Cart, handleRemove: (id: number) => void }> 
                         {product.title}
                     </h2>
                     <p className="my-1 text-sm text-muted-foreground md:my-0 md:hidden">
-                        {product.category.name}
+                        {product.category}
                     </p>
                     <h3 className="text-base md:text-base">
                         {formatPrice(product.price)}
@@ -32,7 +32,7 @@ const CartItem: React.FC<{ product: Cart, handleRemove: (id: number) => void }> 
             </div>
 
             <p className="hidden text-sm text-muted-foreground md:block">
-                {product.category.name}
+                {product.category}
             </p>
 
             <div>
