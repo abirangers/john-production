@@ -24,9 +24,9 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ params }) => {
 
   return (
     <section className="px-4 py-8 mt-4 md:px-8">
-      <div className="flex flex-col items-center justify-center gap-8 md:flex-row md:items-start">
+      <div className="flex flex-col items-center justify-center gap-6 md:flex-row md:items-start">
         {/* left */}
-        <div className="w-full max-w-md flex-shrink-0 h-[448px] rounded-sm">
+        <div className="w-full max-w-md flex-shrink-0 h-[384px] md:h-[448px] rounded-sm">
           <Image
             src={product?.image as string}
             alt={product?.title as string}
@@ -36,8 +36,8 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ params }) => {
           />
         </div>
         {/* right */}
-        <div className="w-full md:w-1/2 pt-5">
-          <div className="border-b pb-4">
+        <div className="w-full md:w-1/2">
+          <div className="border-b">
             <h1 className="mb-2 text-2xl font-bold leading-tight tracking-tighter text-primary md:text-4xl">
               {product?.title}
             </h1>
