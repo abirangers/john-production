@@ -1,8 +1,18 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Poppins } from "next/font/google";
 import "./globals.css";
+import { cn } from "@/lib/utils";
+import Navbar from "@/components/navbar/Navbar";
+import Footer from "@/components/footer/Footer";
+import { Toaster } from "react-hot-toast";
+import TanStackProvider from "@/providers/TanStackProvider";
+import NextTopLoader from 'nextjs-toploader';
 
-const inter = Inter({ subsets: ["latin"] });
+const poppins = Poppins({
+  subsets: ["latin"],
+  variable: "--font-sans",
+  weight: ["400", "500", "600", "700", "800", "900"],
+});
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -16,7 +26,15 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body
+        className={cn("bg-background font-sans antialiased", poppins.variable)}
+      >
+        <Navbar />
+        <TanStackProvider>{children}</TanStackProvider>
+        <Toaster />
+        <NextTopLoader color="#020817" />
+        <Footer />
+      </body>
     </html>
   );
 }

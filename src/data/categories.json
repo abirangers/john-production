@@ -1,0 +1,38 @@
+[
+    {
+        "id": 1,
+        "name": "Bed",
+        "image": "/images/bed.jpg",
+        "products": [
+            {
+                "id": 1,
+                "name": "Bed",
+                "image": "/images/bed.jpg"
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "name": "Cabinet",
+        "image": "/images/cabinet.jpg",
+        "products": [
+            {
+                "id": 2,
+                "name": "Cabinet",
+                "image": "/images/cabinet.jpg"
+            }
+        ]
+    },
+    {
+        "id": 3,
+        "name": "Trolley",
+        "image": "/images/trolley.jpg",
+        "products": [
+            {
+                "id": 3,
+                "name": "Trolley",
+                "image": "/images/trolley.jpg"
+            }
+        ]
+    }
+]
