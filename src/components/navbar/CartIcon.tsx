@@ -10,8 +10,10 @@ const CartIcon = () => {
   const [totalCartItems, setTotalCartItems] = useState(0);
 
   const updateCartItems = () => {
-    const cart = JSON.parse(localStorage.getItem("cart") || "[]");
-    setTotalCartItems(cart.length);
+    if (typeof window !== "undefined") {
+      const cart = JSON.parse(localStorage.getItem("cart") || "[]");
+      setTotalCartItems(cart.length);
+    }
   };
 
   useEffect(() => {

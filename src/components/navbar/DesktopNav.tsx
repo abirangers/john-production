@@ -13,9 +13,11 @@ import Link from 'next/link';
 import { cn } from '@/lib/utils';
 import Logo from './Logo';
 import { getCategories } from '@/services/api/category.service';
+import { useCategoriesQuery } from '@/services/queries/category.query';
+import { Skeleton } from "@/components/ui/skeleton";
 
-const DesktopNav = async () => {
-  const categories = await getCategories();
+const DesktopNav = () => {
+  const { data: categories, isLoading } = useCategoriesQuery();
 
   return (
     <div className="hidden md:flex">
@@ -92,25 +94,35 @@ const DesktopNav = async () => {
             </NavigationMenuTrigger>
             <NavigationMenuContent>
               <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
-                {categories.map((category) => (
-                  <li key={category.id}>
-                    <NavigationMenuLink asChild>
-                    <a
-                      className={cn(
-                        "block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
-                      )}
-                      href={`/products?category=${category.name}`}
-                    >
-                      <div className="text-sm font-medium leading-none">
-                        {category.name}
-                      </div>
-                      <p className="text-sm leading-snug line-clamp-2 text-muted-foreground">
-                        Explore the {category.name} category
-                      </p>
-                    </a>
-                  </NavigationMenuLink>
-                </li>
-                ))}
+                {isLoading ? (
+                  [...Array(4)].map((_, i) => (
+                    <li key={i}>
+                      <Skeleton className="h-8 w-full" />
+                      <Skeleton className="h-6 w-3/4 mt-2" />
+                      <Skeleton className="h-4 w-1/2 mt-2" />
+                    </li>
+                  ))
+                ) : (
+                  categories?.map((category) => (
+                    <li key={category.id}>
+                      <NavigationMenuLink asChild>
+                        <a
+                          className={cn(
+                            "block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+                          )}
+                          href={`/products?category=${category.name}`}
+                        >
+                          <div className="text-sm font-medium leading-none">
+                            {category.name}
+                          </div>
+                          <p className="text-sm leading-snug line-clamp-2 text-muted-foreground">
+                            Explore the {category.name} category
+                          </p>
+                        </a>
+                      </NavigationMenuLink>
+                    </li>
+                  ))
+                )}
               </ul>
             </NavigationMenuContent>
           </NavigationMenuItem>

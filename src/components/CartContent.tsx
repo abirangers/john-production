@@ -14,40 +14,46 @@ const CartContent = () => {
   const handleCheckout = () => {
     setIsDisabled(true);
 
-    // Ambil data keranjang dari Local Storage
-    const cart = JSON.parse(localStorage.getItem("cart") || "[]");
+    if (typeof window !== "undefined") {
+      // Ambil data keranjang dari Local Storage
+      const cart = JSON.parse(localStorage.getItem("cart") || "[]");
 
-    const timeMessage = getTimeBasedGreeting();
+      const timeMessage = getTimeBasedGreeting();
 
-    let message = "Saya ingin memesan produk berikut:\n";
+      let message = "Saya ingin memesan produk berikut:\n";
 
-    cart.forEach((item: Cart) => {
-      message += `- ${item.title} (${item.quantity})\n`;
-      message += `- harga: ${item.price}\n\n`;
-    });
+      cart.forEach((item: Cart) => {
+        message += `- ${item.title} (${item.quantity})\n`;
+        message += `- harga: ${item.price}\n\n`;
+      });
 
-    const encodedMessage = encodeURIComponent(message);
-    const whatsappLink = `https://wa.me/62895393384598?text=Hallo, ${timeMessage} \n ${encodedMessage}`;
-    window.open(whatsappLink, "_blank");
+      const encodedMessage = encodeURIComponent(message);
+      const whatsappLink = `https://wa.me/62895393384598?text=Hallo, ${timeMessage} \n ${encodedMessage}`;
+      window.open(whatsappLink, "_blank");
 
-    setIsDisabled(false);
+      setIsDisabled(false);
 
-    localStorage.removeItem("cart");
-    setCart([]);
-    toast.success("Checkout successful");
+      localStorage.removeItem("cart");
+      setCart([]);
+      toast.success("Checkout successful");
+    }
   };
 
   const handleRemove = (id: number) => {
     const newCart = cart.filter((item) => item.id !== id);
     setCart(newCart);
-    localStorage.setItem("cart", JSON.stringify(newCart));
-    window.dispatchEvent(new Event("storage"));
+    if (typeof window !== "undefined") {
+      localStorage.setItem("cart", JSON.stringify(newCart));
+      window.dispatchEvent(new Event("storage"));
+    }
     toast.success("Item removed from cart");
   };
 
   useEffect(() => {
-    const cart = JSON.parse(localStorage.getItem("cart") || "[]");
-    setCart(cart);
+    if (typeof window !== "undefined") {
+      const cart = JSON.parse(localStorage.getItem("cart") || "[]");
+      setCart(cart);
+    }
   }, []);
 
   return (

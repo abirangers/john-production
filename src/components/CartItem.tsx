@@ -1,6 +1,5 @@
 import { cn, formatPrice } from '@/lib/utils';
 import { Cart } from '@/types/cart'
-import Link from 'next/link';
 import React from 'react'
 import { buttonVariants } from './ui/button';
 import Image from 'next/image';
@@ -11,7 +10,7 @@ const CartItem: React.FC<{ product: Cart, handleRemove: (id: number) => void }> 
             <div className="flex gap-x-4">
                 <div className="w-24 h-24 rounded-md md:w-32 md:h-32">
                     <Image
-                        src={`/images/product${product.id}.jpg`}
+                        src={product.image}
                         alt={product.title}
                         className="object-cover w-full h-full rounded-md"
                         width={96}

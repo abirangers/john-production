@@ -22,7 +22,7 @@ const FilterSheet: React.FC<{categories: Category[]}> = ({categories}) => {
       return router.push('/products')
     }
 
-    router.push(`/products?category=${categoryName}`)
+    router.push(`/products?category=${categoryName}`);
 
     };
 

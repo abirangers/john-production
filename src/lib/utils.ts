@@ -29,8 +29,10 @@ export const handleAddToCart = (e: React.MouseEvent, product: Product) => {
     toast.error("Produk sudah ada di keranjang belanja");
   } else {
     const newCart = [...cart, { ...product, quantity: 1 }];
-    localStorage.setItem("cart", JSON.stringify(newCart));
-    window.dispatchEvent(new Event("storage"));
+    if (typeof window !== "undefined") {
+      localStorage.setItem("cart", JSON.stringify(newCart));
+      window.dispatchEvent(new Event("storage"));
+    }
     toast.success("Produk berhasil ditambahkan ke keranjang belanja");
   }
 };

@@ -6,7 +6,7 @@ import Navbar from "@/components/navbar/Navbar";
 import Footer from "@/components/footer/Footer";
 import { Toaster } from "react-hot-toast";
 import TanStackProvider from "@/providers/TanStackProvider";
-import NextTopLoader from 'nextjs-toploader';
+import NextTopLoader from "nextjs-toploader";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -29,11 +29,13 @@ export default function RootLayout({
       <body
         className={cn("bg-background font-sans antialiased", poppins.variable)}
       >
-        <Navbar />
-        <TanStackProvider>{children}</TanStackProvider>
-        <Toaster />
-        <NextTopLoader color="#020817" />
-        <Footer />
+        <TanStackProvider>
+          <Navbar />
+          {children}
+          <Toaster />
+          <NextTopLoader color="#020817" />
+          <Footer />
+        </TanStackProvider>
       </body>
     </html>
   );

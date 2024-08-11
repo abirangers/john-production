@@ -1,6 +1,7 @@
-import { ArrowRight } from "lucide-react";
+"use client";
+
 import Link from "next/link";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import {
   Card,
   CardContent,
@@ -9,13 +10,30 @@ import {
   CardImage,
   CardTitle,
 } from "@/components/ui/card";
+import { getCategories } from "@/services/api/category.service";
 import { useCategoriesQuery } from "@/services/queries/category.query";
 import { Skeleton } from "./ui/skeleton";
-import { getProducts } from "@/services/api/product.service";
-import { getCategories } from "@/services/api/category.service";
 
-const CategoryCard = async () => {
-  const categories = await getCategories();
+const CategoryCard = () => {
+  const { data: categories, isLoading } = useCategoriesQuery();
+
+  if (isLoading) {
+    return (
+        <div className="grid gap-4 sm:grid-flow-col sm:grid-rows-2 md:grid-rows-1">
+            {[...Array(3)].map((_, i) => (
+                <Card key={i}>
+                  <CardHeader>
+                    <Skeleton className="w-8 h-8" />
+                  </CardHeader>
+                  <CardContent>
+                    <Skeleton className="h-6 mb-2 w-3/4" />
+                    <Skeleton className="h-4 w-1/2" />
+                  </CardContent>
+                </Card>
+            ))}
+        </div>
+    )
+  }
 
   return (
     <div className="grid gap-4 sm:grid-flow-col sm:grid-rows-2 md:grid-rows-1">

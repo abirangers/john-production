@@ -8,7 +8,6 @@ import React from "react";
 import toast from "react-hot-toast";
 
 const ProductCard = ({ product }: { product: Product }) => {
-  
   return (
     <div className="p-4 transition-all bg-white border rounded-lg shadow-lg hover:shadow-xl">
       <Link href={`/products/${product.id}`}>

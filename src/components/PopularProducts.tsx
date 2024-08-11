@@ -1,5 +1,3 @@
-"use client";
-
 import { cn } from "@/lib/utils";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
@@ -36,7 +34,7 @@ const PopularProducts = () => {
           "mx-auto text-center flex w-fit rounded-full gap-x-1"
         )}
       >
-        View all products <ArrowRight />
+        View all products <ArrowRight className="w-6 h-6" />
       </Link>
     </section>
   );

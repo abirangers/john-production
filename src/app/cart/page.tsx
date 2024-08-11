@@ -1,8 +1,10 @@
-import CartContent from '@/components/CartContent';
-import CartItem from '@/components/CartItem';
-import CartSummary from '@/components/CartSummary';
 import type { Cart } from '@/types/cart';
-import React, { useState, useEffect } from 'react'
+import dynamic from 'next/dynamic';
+import React from 'react'
+
+const CartContent = dynamic(() => import('@/components/CartContent'), {
+  ssr: false
+});
 
 const Cart = () => {
   return (
